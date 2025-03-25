@@ -1,26 +1,151 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --background-light: #202020;
+  --foreground: #ededed;
+  --foreground-light: #a1a1a1;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-light: var(--background-light);
   --color-foreground: var(--foreground);
+  --color-foreground-light: var(--foreground-light);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-funnel-display: var(--font-funnel-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+h1,
+h2,
+h3,
+h4 {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+p {
+  color: var(--foreground-light);
+}
+
+strong {
+  color: var(--foreground);
+  font-weight: medium;
+}
+
+input[type="checkbox"]:not(:checked) {
+  background-color: transparent;
+}
+
+html {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  padding: 0;
+
+  body {
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-funnel-display);
+
+    section {
+      width: 100%;
+      padding: 1rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 1rem 1rem;
+      }
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-gradient-background {
+  background: linear-gradient(
+    to top,
+    var(--background-light),
+    var(--background)
+  );
+}
+
+.bg-gradient-foreground {
+  background: linear-gradient(
+    to top,
+    var(--foreground-light),
+    var(--foreground)
+  );
+}
+
+.text-gradient-background {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    to top,
+    var(--background-light),
+    var(--background)
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+.text-gradient-foreground {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    to top,
+    var(--foreground-light),
+    var(--foreground)
+  );
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--foreground-light);
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  background-color: var(--background-light);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

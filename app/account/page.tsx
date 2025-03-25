@@ -1,0 +1,58 @@
+import React from 'react';
+import {
+  UserIcon,
+  Package,
+  Heart,
+  CreditCard,
+  SettingsIcon,
+} from 'lucide-react';
+import Profile from '../components/account/Profile';
+import Orders from '../components/account/Orders';
+import WishList from '../components/account/WishList';
+import PaymentMethods from '../components/account/PaymentMethods';
+import Settings from '../components/account/Settings';
+import { Tabs } from '../components/ui/Tabs';
+
+export default async function AccountPage() {
+
+  const pageTabs = [
+    {
+      title: 'profile',
+      icon: <UserIcon size={16} />,
+      content: <Profile />,
+    },
+    {
+      title: 'orders',
+      icon: <Package size={16} />,
+      content: <Orders />,
+    },
+    {
+      title: 'wishlist',
+      icon: <Heart size={16} />,
+      content: <WishList />,
+    },
+    {
+      title: 'payment methods',
+      icon: <CreditCard size={16} />,
+      content: <PaymentMethods />,
+    },
+    {
+      title: 'settings',
+      icon: <SettingsIcon size={16} />,
+      content: <Settings />,
+    },
+  ];
+
+  return (
+    <>
+      <section className="flex flex-col gap-4">
+        <h3 className="">your account</h3>
+        <Tabs
+          tabs={pageTabs}
+          orientation="horizontal"
+          className="md:orientation-vertical"
+        />
+      </section>
+    </>
+  );
+}

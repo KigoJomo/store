@@ -147,7 +147,7 @@ export default function CartPage() {
             <ShoppingCart className="h-16 w-16 mx-auto text-foreground-light opacity-50 mb-4" />
             <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
             <p className="text-foreground-light mb-6">
-              Looks like you haven't added anything to your cart yet.
+              Looks like you haven&apos;t added anything to your cart yet.
             </p>
             <Button href="/products" variant="primary">
               Start Shopping

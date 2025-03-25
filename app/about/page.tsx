@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Award, Clock, Leaf } from 'lucide-react';
+import { Users, Award, Leaf } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 export default function AboutPage() {

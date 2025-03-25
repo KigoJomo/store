@@ -4,8 +4,9 @@ import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   const sessionToken =
-    request.cookies.get('authjs.session-token')?.value ||
-    request.cookies.get('__Secure-authjs.session-token')?.value;
+    process.env.NODE_ENV === 'production'
+      ? request.cookies.get('__Secure-authjs.session-token')?.value
+      : request.cookies.get('authjs.session-token')?.value;
 
   const token = sessionToken
     ? await getToken({

@@ -12,8 +12,15 @@ import WishList from '../components/account/WishList';
 import PaymentMethods from '../components/account/PaymentMethods';
 import Settings from '../components/account/Settings';
 import { Tabs } from '../components/ui/Tabs';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
 export default async function AccountPage() {
+  const session = await auth();
+
+  if(!session?.user){
+    redirect('/login')
+  }
 
   const pageTabs = [
     {

@@ -15,7 +15,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
+      <section className="">
         <h1 className="text-3xl font-bold text-gradient-foreground mb-6">
           Search Products
         </h1>
@@ -73,7 +73,7 @@ export default function SearchPage() {
             ? 'No results found for your search. Try different keywords.'
             : 'Enter a search term to find products.'}
         </div>
-      </div>
+      </section>
     </>
   );
 }

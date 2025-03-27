@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 export default function ProductsPage() {
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
+      <section className="">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gradient-foreground">
             Products
@@ -44,7 +44,7 @@ export default function ProductsPage() {
               </div>
             ))}
         </div>
-      </div>
+      </section>
     </>
   );
 }

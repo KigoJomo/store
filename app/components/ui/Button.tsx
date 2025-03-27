@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import Link from 'next/link';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   href?: string;
   variant?: 'primary' | 'outline';
@@ -45,8 +45,14 @@ const Button: React.FC<ButtonProps> = ({
   // If href is provided, render as Link
   if (href) {
     return (
-      <Link href={href} className={buttonStyles} {...props}>
-        {children}
+      <Link href={href}>
+        <button
+          type={type}
+          className={buttonStyles}
+          onClick={onClick}
+          {...props}>
+          {children}
+        </button>
       </Link>
     );
   }

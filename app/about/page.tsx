@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 export default function AboutPage() {
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
+      <section className="">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold text-gradient-foreground mb-6">
             About Us
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

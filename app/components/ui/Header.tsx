@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Search, ShoppingCart, Loader } from 'lucide-react';
-import Button from './ui/Button';
-import { Logo } from './ui/Logo';
-import { useSession } from 'next-auth/react';
-import Tooltip from './ui/Tooltip';
+import Button from './Button';
+import { Logo } from './Logo';
+import Tooltip from './Tooltip';
 import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import SideMenu from './SideMenu';
 
 const NAV_ITEMS = [
   { href: '/products', label: 'Products' },
@@ -31,10 +32,17 @@ const NavLink: React.FC<{
 const Header: React.FC = () => {
   const { data: session, status } = useSession();
 
+  const [sessionData, setSessionData] = useState(session);
+  const [authStatus, setAuthStatus] = useState(status);
+
+  useEffect(() => {
+    setSessionData(session);
+    setAuthStatus(status);
+  }, [session, status]);
+
   const ACTION_ICONS = [
     { href: '/search', icon: Search, label: 'Search' },
     { href: '/cart', icon: ShoppingCart, label: 'Cart' },
-    // { href: '/account', icon: User, label: 'Account' },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,33 +78,34 @@ const Header: React.FC = () => {
               <item.icon className="" size={18} />
             </NavLink>
           ))}
-          {status === 'unauthenticated' ? (
+
+          {authStatus === 'unauthenticated' ? (
             <Button href="/login" size="sm">
               Sign in
             </Button>
-          ) : status === 'loading' ? (
+          ) : authStatus === 'loading' ? (
             <Button size="sm" variant="outline">
               <Loader className="animate-spin" size={12} />
             </Button>
-          ) : status === 'authenticated' ? (
+          ) : authStatus === 'authenticated' ? (
             <Tooltip
-              content={`Logged in as ${session.user?.email}`}
+              content={`Logged in as ${sessionData?.user?.email}`}
               position="left">
               <Button
                 variant="outline"
                 size="sm"
                 href="/account"
                 className="flex items-center gap-2">
-                {session.user && (
+                {sessionData?.user && (
                   <>
                     <Image
-                      src={session.user.image!}
-                      alt={session.user.name!}
+                      src={sessionData.user.image!}
+                      alt={sessionData.user.name!}
                       width={24}
                       height={24}
                       className="rounded my-1"
                     />
-                    <span>{session.user.name}</span>
+                    <span>{sessionData.user.name}</span>
                   </>
                 )}
               </Button>
@@ -117,62 +126,73 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile menu, show/hide based on menu state */}
-      {isMenuOpen && (
-        <div className="h-full md:hidden mt-4 pt-4 border-t border-background-light">
-          <nav className="flex flex-col gap-4 pb-4">
+      <SideMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        position="left"
+        className="md:hidden">
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-2">
+            <Logo />
+            <h4 className="!lowercase">tappeli</h4>
+          </div>
+
+          <hr className="border-background-light" />
+
+          <nav className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
-              <NavLink key={item.href} href={item.href}>
+              <NavLink key={item.href} href={item.href} className="text-base">
                 {item.label}
               </NavLink>
             ))}
           </nav>
-          <div className="flex flex-col gap-4 pt-4 border-t border-background-light">
+
+          <div className="flex flex-col gap-4">
+            <hr className="border-background-light" />
+
             {ACTION_ICONS.map((item) => (
               <NavLink
                 key={item.href}
                 href={item.href}
-                className="flex items-center">
+                className="flex items-center text-base">
                 <item.icon className="mr-2" size={18} />
                 {item.label}
               </NavLink>
             ))}
 
+            <hr className="border-background-light" />
+
             {status === 'unauthenticated' ? (
-              <Button href="/login" size="sm">
+              <Button href="/login" size="sm" className="w-full">
                 Sign in
               </Button>
             ) : status === 'loading' ? (
-              <Button size="sm" variant="outline">
+              <Button size="sm" variant="outline" className="w-full">
                 <Loader className="animate-spin" size={12} />
               </Button>
             ) : status === 'authenticated' ? (
-              <Tooltip
-                content={`Logged in as ${session.user?.email}`}
-                position="left">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  href="/account"
-                  className="flex items-center gap-2 w-full">
-                  {session.user && (
-                    <>
-                      <Image
-                        src={session.user.image!}
-                        alt={session.user.name!}
-                        width={24}
-                        height={24}
-                        className="rounded my-1"
-                      />
-                      <span>{session.user.name}</span>
-                    </>
-                  )}
-                </Button>
-              </Tooltip>
+              <Button
+                variant="outline"
+                size="sm"
+                href="/account"
+                className="flex items-center gap-2 w-full">
+                {session.user && (
+                  <>
+                    <Image
+                      src={session.user.image!}
+                      alt={session.user.name!}
+                      width={24}
+                      height={24}
+                      className="rounded my-1"
+                    />
+                    <span>{session.user.name}</span>
+                  </>
+                )}
+              </Button>
             ) : null}
           </div>
         </div>
-      )}
+      </SideMenu>
     </header>
   );
 };

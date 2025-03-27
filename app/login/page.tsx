@@ -21,14 +21,16 @@ export default function LoginPage() {
 
   if (status === 'loading') {
     return (
-      <div className="container mx-auto px-4 py-8 text-center">Loading...</div>
+      <>
+        <section className="text-center">Loading...</section>
+      </>
     );
   }
 
   if (status === 'unauthenticated') {
     return (
       <>
-        <div className="container mx-auto px-4 py-8">
+        <section className="">
           <div className="max-w-lg mx-auto border border-background-light rounded-lg shadow-md p-12 flex flex-col gap-6">
             <div className="w-full flex flex-col items-center justify-center gap-2">
               <Logo size={64} />
@@ -64,7 +66,7 @@ export default function LoginPage() {
               </p>
             </div>
           </div>
-        </div>
+        </section>
       </>
     );
   }

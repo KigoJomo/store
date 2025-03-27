@@ -1,14 +1,12 @@
-'use server';
 import { FC } from 'react';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
-import { auth } from '@/auth';
 import ProfilePic from './ProfilePic';
 import Signout from '../auth/Signout';
+import { getUserProfile } from '@/data/users';
 
 const Profile: FC = async () => {
-  const session = await auth();
-  const { user } = await session!;
+  const user = await getUserProfile()
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-6 md:gap-12">

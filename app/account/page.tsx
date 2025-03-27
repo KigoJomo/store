@@ -12,13 +12,13 @@ import WishList from '../components/account/WishList';
 import PaymentMethods from '../components/account/PaymentMethods';
 import Settings from '../components/account/Settings';
 import { Tabs } from '../components/ui/Tabs';
-import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import { getUserProfile } from '@/data/users';
 
 export default async function AccountPage() {
-  const session = await auth();
+  const { isAuthenticated } = await getUserProfile()
 
-  if(!session?.user){
+  if(!isAuthenticated){
     redirect('/login')
   }
 

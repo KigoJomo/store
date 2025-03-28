@@ -7,12 +7,10 @@ import SigninGit from '../components/auth/SigninGit';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+function LoginContent() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: session, status } = useSession();
-
   const router = useRouter();
-
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/'
 
@@ -24,15 +22,15 @@ export default function LoginPage() {
 
   if (status === 'loading') {
     return (
-      <Suspense>
+      <>
         <section className="text-center">Loading...</section>
-      </Suspense>
+      </>
     );
   }
 
   if (status === 'unauthenticated') {
     return (
-      <Suspense>
+      <>
         <section className="">
           <div className="max-w-lg mx-auto border border-background-light rounded-lg shadow-md p-12 flex flex-col gap-6">
             <div className="w-full flex flex-col items-center justify-center gap-2">
@@ -70,9 +68,17 @@ export default function LoginPage() {
             </div>
           </div>
         </section>
-      </Suspense>
+      </>
     );
   }
 
   return null;
+}
+
+export default function LoginPage(){
+  return(
+    <Suspense fallback={<section className="text-center">Loading...</section>}>
+      <LoginContent />
+    </Suspense>
+  )
 }

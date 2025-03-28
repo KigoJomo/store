@@ -4,13 +4,11 @@ import { signInWithGithub } from '@/app/actions/auth';
 
 interface SigninGitProps{
   className?: string
-  callbackUrl: string;
 }
 
-export default function SigninGit({ className= '', callbackUrl }: SigninGitProps) {
+export default function SigninGit({ className= '' }: SigninGitProps) {
   const handleSignIn = () => {
     signInWithGithub()
-    // signInWithGithub(callbackUrl)
   }
 
   return (

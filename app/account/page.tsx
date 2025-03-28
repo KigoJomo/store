@@ -12,7 +12,6 @@ export default async function AccountPage() {
   const isAuthenticated = await getAuthStatus();
 
   if (!isAuthenticated) {
-    // console.log(`Acc. page: not authenticated!`)
     redirect(`/login?callbackUrl=/account`);
   }
 

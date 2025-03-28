@@ -15,11 +15,9 @@ export default function LoginPage() {
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/'
-  console.log(`Login Page - CallbackUrl: ${callbackUrl}`) //works
 
   useEffect(() => {
     if (status === 'authenticated') {
-      console.log(`Login Page: authenticated!`)
       router.push(callbackUrl);
     }
   }, [router, status, callbackUrl]);
@@ -47,7 +45,7 @@ export default function LoginPage() {
             <h4 className="text-center">Let&apos;s get you signed in!</h4>
 
             <div className="w-full flex items-center justify-center">
-              <SigninGit callbackUrl={callbackUrl} className="" />
+              <SigninGit className="" />
             </div>
 
             <hr className="border-background-light" />

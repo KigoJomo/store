@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Logo } from '../components/ui/Logo';
 import SigninGit from '../components/auth/SigninGit';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -13,11 +13,16 @@ export default function LoginPage() {
 
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  console.log(`Login Page - CallbackUrl: ${callbackUrl}`) //works
+
   useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/');
+      console.log(`Login Page: authenticated!`)
+      router.push(callbackUrl);
     }
-  }, [router, status]);
+  }, [router, status, callbackUrl]);
 
   if (status === 'loading') {
     return (
@@ -42,7 +47,7 @@ export default function LoginPage() {
             <h4 className="text-center">Let&apos;s get you signed in!</h4>
 
             <div className="w-full flex items-center justify-center">
-              <SigninGit className="" />
+              <SigninGit callbackUrl={callbackUrl} className="" />
             </div>
 
             <hr className="border-background-light" />

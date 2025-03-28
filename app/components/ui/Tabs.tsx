@@ -73,7 +73,7 @@ export function Tabs({
         'w-full',
         isVertical
           ? 'flex flex-row gap-6 border-t border-background-light pt-6'
-          : 'flex flex-col',
+          : 'flex flex-col gap-4 sm:gap-6',
         className
       )}>
       {/* Floating menu button for mobile devices */}
@@ -105,10 +105,9 @@ export function Tabs({
                   : '-translate-x-full mx-0 md:translate-x-0',
                 'w-4/5 max-w-[300px]',
               ].join(' ')
-            : 'flex-row overflow-x-auto border-b'
+            : 'flex-row justify-center sm:justify-start gap-4 sm:gap-0 overflow-x-auto border-b'
         )}>
         {tabs.map((tab, index) => {
-          // const Icon = tab.icon;
           const isActive = activeTab === index;
 
           return (
@@ -116,7 +115,7 @@ export function Tabs({
               key={index}
               onClick={() => handleTabClick(index)}
               className={cn(
-                'group flex items-center px-4 py-3 text-sm font-medium cursor-pointer transition-all duration-200',
+                'group flex flex-col sm:flex-row items-center gap-2 px-4 py-3 text-sm font-medium cursor-pointer transition-all duration-200',
                 isVertical ? 'border-l-2' : 'border-b-2',
                 isActive
                   ? isVertical
@@ -129,19 +128,11 @@ export function Tabs({
                   ? 'w-full justify-start gap-3'
                   : 'justify-center whitespace-nowrap'
               )}>
-              {/* <tab.icon
-                className={cn(
-                  'h-4 w-4',
-                  isActive
-                    ? 'text-primary'
-                    : 'text-muted-foreground group-hover:text-primary/80'
-                )}
-              /> */}
               {tab.icon}
               <span
                 className={cn(
                   'capitalize',
-                  isVertical ? '' : 'hidden sm:inline-block ml-2'
+                  isVertical ? '' : 'text-xs sm:text-sm'
                 )}>
                 {tab.title}
               </span>

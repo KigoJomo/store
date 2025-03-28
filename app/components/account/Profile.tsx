@@ -10,7 +10,7 @@ const Profile: FC = async () => {
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-6 md:gap-12">
-      <div className="w-full md:w-1/5 md:h-full flex md:flex-col items-center gap-4">
+      <div className="w-full md:w-1/5 md:h-full flex flex-row md:flex-col items-center gap-4">
         <ProfilePic
           src={user?.image as string}
           alt={user?.name as string}
@@ -19,7 +19,9 @@ const Profile: FC = async () => {
         />
         <span>{user?.name}</span>
 
-        <Signout className='mt-auto' />
+        <div className="sm:mt-auto ml-auto sm:ml-0">
+          <Signout className='' />
+        </div>
       </div>
 
       <div className="w-full md:w-4/5 flex flex-col gap-4">
@@ -32,7 +34,7 @@ const Profile: FC = async () => {
             type="email"
             value={user?.email as string}
           />
-          <Button>Update Profile</Button>
+          <Button className='w-fit'>Update Profile</Button>
         </div>
       </div>
     </div>

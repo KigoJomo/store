@@ -11,6 +11,12 @@ import { User } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from './auth';
 
+export async function getAuthStatus(){
+  const { isAuthenticated } = await getCurrentUser()
+
+  return isAuthenticated
+}
+
 export async function getProfileDTO(user: User, isAuthenticated: boolean) {
   const userProfile = {
     name: user.name,

@@ -1,25 +1,19 @@
 import React from 'react';
-import {
-  UserIcon,
-  Package,
-  Heart,
-  CreditCard,
-  SettingsIcon,
-} from 'lucide-react';
+import { UserIcon, Package, Heart, SettingsIcon } from 'lucide-react';
 import Profile from '../components/account/Profile';
 import Orders from '../components/account/Orders';
 import WishList from '../components/account/WishList';
-import PaymentMethods from '../components/account/PaymentMethods';
 import Settings from '../components/account/Settings';
 import { Tabs } from '../components/ui/Tabs';
 import { redirect } from 'next/navigation';
-import { getUserProfile } from '@/data/users';
+import { getAuthStatus } from '@/data/users';
 
 export default async function AccountPage() {
-  const { isAuthenticated } = await getUserProfile()
+  const isAuthenticated = await getAuthStatus();
 
-  if(!isAuthenticated){
-    redirect('/login')
+  if (!isAuthenticated) {
+    // console.log(`Acc. page: not authenticated!`)
+    redirect(`/login?callbackUrl=/account`);
   }
 
   const pageTabs = [
@@ -38,11 +32,11 @@ export default async function AccountPage() {
       icon: <Heart size={16} />,
       content: <WishList />,
     },
-    {
-      title: 'payment methods',
-      icon: <CreditCard size={16} />,
-      content: <PaymentMethods />,
-    },
+    // {
+    //   title: 'payment methods',
+    //   icon: <CreditCard size={16} />,
+    //   content: <PaymentMethods />,
+    // },
     {
       title: 'settings',
       icon: <SettingsIcon size={16} />,

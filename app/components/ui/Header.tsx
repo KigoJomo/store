@@ -21,9 +21,11 @@ const NavLink: React.FC<{
   href: string;
   className?: string;
   children: React.ReactNode;
-}> = ({ href, className = '', children }) => (
+  onClick?: () => void;
+}> = ({ href, className = '', children, onClick }) => (
   <Link
     href={href}
+    onClick={onClick}
     className={`text-sm text-foreground-light hover:text-foreground ${className}`}>
     {children}
   </Link>
@@ -132,16 +134,23 @@ const Header: React.FC = () => {
         position="left"
         className="md:hidden">
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            onClick={() => setIsMenuOpen(false)}>
             <Logo />
             <h4 className="!lowercase">tappeli</h4>
-          </div>
+          </Link>
 
           <hr className="border-background-light" />
 
           <nav className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
-              <NavLink key={item.href} href={item.href} className="text-base">
+              <NavLink
+                key={item.href}
+                href={item.href}
+                className="text-base"
+                onClick={() => setIsMenuOpen(false)}>
                 {item.label}
               </NavLink>
             ))}
@@ -154,7 +163,8 @@ const Header: React.FC = () => {
               <NavLink
                 key={item.href}
                 href={item.href}
-                className="flex items-center text-base">
+                className="flex items-center text-base"
+                onClick={() => setIsMenuOpen(false)}>
                 <item.icon className="mr-2" size={18} />
                 {item.label}
               </NavLink>
@@ -163,7 +173,11 @@ const Header: React.FC = () => {
             <hr className="border-background-light" />
 
             {status === 'unauthenticated' ? (
-              <Button href="/login" size="sm" className="w-full">
+              <Button
+                href="/login"
+                size="sm"
+                className="w-full"
+                onClick={() => setIsMenuOpen(false)}>
                 Sign in
               </Button>
             ) : status === 'loading' ? (
@@ -175,7 +189,8 @@ const Header: React.FC = () => {
                 variant="outline"
                 size="sm"
                 href="/account"
-                className="flex items-center gap-2 w-full">
+                className="flex items-center gap-2 w-full"
+                onClick={() => setIsMenuOpen(false)}>
                 {session.user && (
                   <>
                     <Image

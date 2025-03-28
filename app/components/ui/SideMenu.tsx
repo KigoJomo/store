@@ -43,7 +43,7 @@ const SideMenu = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="w-fit flex ml-auto p-3 border border-foreground-light rounded-full hover:rotate-90 transition-all duration-300 cursor-pointer focus:outline-none">
+          className="w-fit flex ml-auto p-3 rounded-full hover:rotate-90 transition-all duration-300 cursor-pointer focus:outline-none">
           <X size={16} />
         </button>
 

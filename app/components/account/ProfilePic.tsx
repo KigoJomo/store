@@ -19,8 +19,8 @@ const ProfilePic: FC<ProfilePicProps> = ({
   className,
   border = true,
 }) => {
-  const MD_WIDTH = 256;
-  const SM_WIDTH = 64;
+  const MD_WIDTH = 192;
+  const XS_WIDTH = 64;
   const BORDER_WIDTH = 6;
 
   return (
@@ -56,8 +56,8 @@ const ProfilePic: FC<ProfilePicProps> = ({
           <Image
             src={src}
             alt={alt}
-            width={SM_WIDTH - BORDER_WIDTH}
-            height={SM_WIDTH - BORDER_WIDTH}
+            width={XS_WIDTH - BORDER_WIDTH}
+            height={XS_WIDTH - BORDER_WIDTH}
             className={``}
           />
         </Squircle>
@@ -66,7 +66,7 @@ const ProfilePic: FC<ProfilePicProps> = ({
           <Squircle cornerRadius={radius/3.01} className="absolute z-[1]">
             <div
               className={`aspect-square bg-background-light`}
-              style={{ width: SM_WIDTH }}></div>
+              style={{ width: XS_WIDTH }}></div>
           </Squircle>
         )}
       </div>

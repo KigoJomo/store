@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import Link from 'next/link';
 import { Logo } from '../components/ui/Logo';
 import SigninGit from '../components/auth/SigninGit';
@@ -24,15 +24,15 @@ export default function LoginPage() {
 
   if (status === 'loading') {
     return (
-      <>
+      <Suspense>
         <section className="text-center">Loading...</section>
-      </>
+      </Suspense>
     );
   }
 
   if (status === 'unauthenticated') {
     return (
-      <>
+      <Suspense>
         <section className="">
           <div className="max-w-lg mx-auto border border-background-light rounded-lg shadow-md p-12 flex flex-col gap-6">
             <div className="w-full flex flex-col items-center justify-center gap-2">
@@ -70,7 +70,7 @@ export default function LoginPage() {
             </div>
           </div>
         </section>
-      </>
+      </Suspense>
     );
   }
 

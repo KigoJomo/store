@@ -12,7 +12,7 @@ function LoginContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -35,7 +35,7 @@ function LoginContent() {
           <div className="max-w-lg mx-auto border border-background-light rounded-lg shadow-md p-12 flex flex-col gap-6">
             <div className="w-full flex flex-col items-center justify-center gap-2">
               <Logo size={64} />
-              <span className="text-xl font-bold">tappeli</span>
+              <span className="text-xl font-bold">aqutte</span>
             </div>
 
             <hr className="border-background-light" />
@@ -75,10 +75,10 @@ function LoginContent() {
   return null;
 }
 
-export default function LoginPage(){
-  return(
+export default function LoginPage() {
+  return (
     <Suspense fallback={<section className="text-center">Loading...</section>}>
       <LoginContent />
     </Suspense>
-  )
+  );
 }

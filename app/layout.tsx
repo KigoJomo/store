@@ -20,8 +20,8 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Tappeli Store',
-  description: 'Shop quality merch.',
+  title: 'Aqutte',
+  description: 'Shop quality products.',
 };
 
 export default function RootLayout({

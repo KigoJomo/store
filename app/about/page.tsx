@@ -13,7 +13,7 @@ export default function AboutPage() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-foreground-light mb-6">
-              Tappeli is a cutting-edge e-commerce platform founded in 2023 with
+              Aqutte is a cutting-edge e-commerce platform founded in 2023 with
               the mission to provide high-quality products at affordable prices.
               Our team is passionate about delivering exceptional customer
               experiences.

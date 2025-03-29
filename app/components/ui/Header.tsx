@@ -60,7 +60,7 @@ const Header: React.FC = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-2 mr-10">
             <Logo />
-            <span className="text-xl font-bold">tappeli</span>
+            <span className="text-xl font-bold">aqutte</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -139,7 +139,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-2"
             onClick={() => setIsMenuOpen(false)}>
             <Logo />
-            <h4 className="!lowercase">tappeli</h4>
+            <h4 className="!lowercase">aqutte</h4>
           </Link>
 
           <hr className="border-background-light" />

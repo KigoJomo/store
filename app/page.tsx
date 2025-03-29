@@ -1,15 +1,19 @@
+import Hero from './components/landing/Hero';
+import Promise from './components/landing/Promise';
+import Offerings from './components/landing/Offerings';
+import Community from './components/landing/Community';
+import Newsletter from './components/landing/Newsletter';
+import CallToAction from './components/landing/CallToAction';
+
 export default function Home() {
   return (
-    <>
-      <section className="flex flex-col items-center gap-12">
-        <h1>hello world</h1>
-        <p className="text-center md:max-w-[60vw] xl:max-w-[40vw]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          voluptatum, amet esse officia <strong>dolore</strong> neque, veniam
-          vitae numquam corporis.
-        </p>
-        <h3>duuuuudeeeeee</h3>
-      </section>
-    </>
+    <main className="flex flex-col gap-20 pb-20">
+      <Hero />
+      <Promise />
+      <Offerings />
+      <Community />
+      <Newsletter />
+      <CallToAction />
+    </main>
   );
 }

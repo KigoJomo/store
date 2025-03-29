@@ -46,7 +46,7 @@ export default function ContactPage() {
               <div className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-4" />
                 <span className="text-foreground-light">
-                  support@tappeli.com
+                  support@aqutte.com
                 </span>
               </div>
 

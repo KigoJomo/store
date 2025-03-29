@@ -7,13 +7,13 @@ import CallToAction from './components/landing/CallToAction';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-20 pb-20">
+    <>
       <Hero />
       <Promise />
       <Offerings />
       <Community />
       <Newsletter />
       <CallToAction />
-    </main>
+    </>
   );
 }

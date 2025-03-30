@@ -12,7 +12,7 @@ export default async function AccountPage() {
   const isAuthenticated = await getAuthStatus();
 
   if (!isAuthenticated) {
-    redirect(`/login?callbackUrl=/account`);
+    redirect(`/login?redirectUrl=${encodeURIComponent('/account')}`);
   }
 
   const pageTabs = [
@@ -31,11 +31,6 @@ export default async function AccountPage() {
       icon: <Heart size={16} />,
       content: <WishList />,
     },
-    // {
-    //   title: 'payment methods',
-    //   icon: <CreditCard size={16} />,
-    //   content: <PaymentMethods />,
-    // },
     {
       title: 'settings',
       icon: <SettingsIcon size={16} />,

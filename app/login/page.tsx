@@ -1,34 +1,24 @@
-'use client';
-
-import React, { Suspense, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Logo } from '../components/ui/Logo';
 import SigninGit from '../components/auth/SigninGit';
-import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { getAuthStatus } from '@/data/users';
+import { redirect } from 'next/navigation';
 
-function LoginContent() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirectUrl?: string }>;
+}) {
+  const isAuthenticated = await getAuthStatus();
 
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.push(callbackUrl);
-    }
-  }, [router, status, callbackUrl]);
+  const redirectUrl = (await searchParams).redirectUrl || '/';
 
-  if (status === 'loading') {
-    return (
-      <>
-        <section className="text-center">Loading...</section>
-      </>
-    );
+  if (isAuthenticated) {
+    redirect(redirectUrl);
   }
 
-  if (status === 'unauthenticated') {
+  if (!isAuthenticated) {
     return (
       <>
         <section className="">
@@ -43,7 +33,7 @@ function LoginContent() {
             <h4 className="text-center">Let&apos;s get you signed in!</h4>
 
             <div className="w-full flex items-center justify-center">
-              <SigninGit className="" />
+              <SigninGit className="" redirectUrl={redirectUrl} />
             </div>
 
             <hr className="border-background-light" />
@@ -73,12 +63,4 @@ function LoginContent() {
   }
 
   return null;
-}
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={<section className="text-center">Loading...</section>}>
-      <LoginContent />
-    </Suspense>
-  );
 }

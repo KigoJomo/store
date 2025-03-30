@@ -9,6 +9,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import SideMenu from './SideMenu';
+import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
   { href: '/products', label: 'Products' },
@@ -37,10 +38,14 @@ const Header: React.FC = () => {
   const [sessionData, setSessionData] = useState(session);
   const [authStatus, setAuthStatus] = useState(status);
 
+  const pathname = usePathname();
+  const [currentPath, setCurrentPath] = useState(pathname);
+
   useEffect(() => {
     setSessionData(session);
     setAuthStatus(status);
-  }, [session, status]);
+    setCurrentPath(pathname);
+  }, [pathname, session, status]);
 
   const ACTION_ICONS = [
     { href: '/search', icon: Search, label: 'Search' },
@@ -82,7 +87,9 @@ const Header: React.FC = () => {
           ))}
 
           {authStatus === 'unauthenticated' ? (
-            <Button href="/login" size="sm">
+            <Button
+              href={`/login?redirectUrl=${encodeURIComponent(currentPath)}`}
+              size="sm">
               Sign in
             </Button>
           ) : authStatus === 'loading' ? (
@@ -174,7 +181,7 @@ const Header: React.FC = () => {
 
             {status === 'unauthenticated' ? (
               <Button
-                href="/login"
+                href={`/login?redirectUrl=${encodeURIComponent(currentPath)}`}
                 size="sm"
                 className="w-full"
                 onClick={() => setIsMenuOpen(false)}>

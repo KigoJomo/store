@@ -1,14 +1,16 @@
+"use client"
 import { Github } from 'lucide-react';
 import Button from '../ui/Button';
 import { signInWithGithub } from '@/app/actions/auth';
 
 interface SigninGitProps{
   className?: string
+  redirectUrl?: string
 }
 
-export default function SigninGit({ className= '' }: SigninGitProps) {
+export default function SigninGit({ className= '', redirectUrl='/' }: SigninGitProps) {
   const handleSignIn = () => {
-    signInWithGithub()
+    signInWithGithub(redirectUrl)
   }
 
   return (

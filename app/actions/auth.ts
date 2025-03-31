@@ -9,5 +9,5 @@ export async function signInWithGithub(redirectUrl: string) {
 
 export async function logOut() {
   await signOut();
-  redirect('/login');
+  redirect('/auth/login');
 }

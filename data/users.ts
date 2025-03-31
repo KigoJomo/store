@@ -11,10 +11,10 @@ import { User } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from './auth';
 
-export async function getAuthStatus(){
-  const { isAuthenticated } = await getCurrentUser()
+export async function getAuthStatus() {
+  const { isAuthenticated } = await getCurrentUser();
 
-  return isAuthenticated
+  return isAuthenticated;
 }
 
 export async function getProfileDTO(user: User, isAuthenticated: boolean) {
@@ -32,11 +32,11 @@ export async function getUserProfile() {
   const { isAuthenticated, user } = await getCurrentUser();
 
   if (!isAuthenticated) {
-    redirect('/login');
+    redirect('/auth/login');
   }
 
   if (!user) {
-    redirect('/login');
+    redirect('/auth/login');
   }
 
   return getProfileDTO(user, isAuthenticated);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { UserIcon, Package, Heart, SettingsIcon } from 'lucide-react';
-import Profile from '../components/account/Profile';
-import Orders from '../components/account/Orders';
-import WishList from '../components/account/WishList';
-import Settings from '../components/account/Settings';
-import { Tabs } from '../components/ui/Tabs';
+import Profile from './components/Profile';
+import Orders from './components/Orders';
+import WishList from './components/WishList';
+import Settings from './components/Settings';
+import { Tabs } from '@/shared/components/ui/Tabs';
 import { redirect } from 'next/navigation';
 import { getAuthStatus } from '@/data/users';
 
@@ -12,7 +12,7 @@ export default async function AccountPage() {
   const isAuthenticated = await getAuthStatus();
 
   if (!isAuthenticated) {
-    redirect(`/login?redirectUrl=${encodeURIComponent('/account')}`);
+    redirect(`/auth/login?redirectUrl=${encodeURIComponent('/account')}`);
   }
 
   const pageTabs = [

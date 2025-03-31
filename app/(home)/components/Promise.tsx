@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, Users, Eye } from 'lucide-react';
-import Background2 from '../ui/Background2';
+import Background2 from '@/shared/components/ui/Background2';
 
 type PromiseCardProps = {
   title: string;

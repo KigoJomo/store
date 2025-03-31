@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Search, Filter } from 'lucide-react';
-import Button from '../components/ui/Button';
+import Button from '@/shared/components/ui/Button';
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');

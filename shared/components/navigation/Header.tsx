@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { Menu, X, Search, ShoppingCart, Loader } from 'lucide-react';
-import Button from '../ui/Button';
-import { Logo } from '../ui/Logo';
-import Tooltip from '../ui/Tooltip';
+import Button from '@shared/components/ui/Button';
+import { Logo } from '@shared/components/ui/Logo';
+import Tooltip from '@shared/components/ui/Tooltip';
+import SideMenu from '@shared/components/ui/SideMenu';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import SideMenu from '../ui/SideMenu';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
@@ -88,7 +88,9 @@ const Header: React.FC = () => {
 
           {authStatus === 'unauthenticated' ? (
             <Button
-              href={`/login?redirectUrl=${encodeURIComponent(currentPath)}`}
+              href={`/auth/login?redirectUrl=${encodeURIComponent(
+                currentPath
+              )}`}
               size="sm">
               Sign in
             </Button>
@@ -181,7 +183,9 @@ const Header: React.FC = () => {
 
             {status === 'unauthenticated' ? (
               <Button
-                href={`/login?redirectUrl=${encodeURIComponent(currentPath)}`}
+                href={`/auth/login?redirectUrl=${encodeURIComponent(
+                  currentPath
+                )}`}
                 size="sm"
                 className="w-full"
                 onClick={() => setIsMenuOpen(false)}>

@@ -1,6 +1,6 @@
 "use client"
 import { Github } from 'lucide-react';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 import { signInWithGithub } from '@/app/actions/auth';
 
 interface SigninGitProps{

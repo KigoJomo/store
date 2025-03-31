@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import Input from '../ui/Input';
-import Button from '../ui/Button';
+import Input from '@/shared/components/ui/Input';
+import Button from '@/shared/components/ui/Button';
 import ProfilePic from './ProfilePic';
-import Signout from '../auth/Signout';
 import { getUserProfile } from '@/data/users';
+import Signout from '@/app/auth/components/Signout';
 
 const Profile: FC = async () => {
-  const user = await getUserProfile()
+  const user = await getUserProfile();
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-6 md:gap-12">
@@ -20,7 +20,7 @@ const Profile: FC = async () => {
         <span>{user?.name}</span>
 
         <div className="sm:mt-auto ml-auto sm:ml-0">
-          <Signout className='' />
+          <Signout className="" />
         </div>
       </div>
 
@@ -34,7 +34,7 @@ const Profile: FC = async () => {
             type="email"
             value={user?.email as string}
           />
-          <Button className='w-fit'>Update Profile</Button>
+          <Button className="w-fit">Update Profile</Button>
         </div>
       </div>
     </div>

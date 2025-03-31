@@ -1,9 +1,9 @@
-import Hero from './components/landing/Hero';
-import Promise from './components/landing/Promise';
-import Offerings from './components/landing/Offerings';
-import Community from './components/landing/Community';
-import Newsletter from './components/landing/Newsletter';
-import CallToAction from './components/landing/CallToAction';
+import Hero from './(home)/components/Hero';
+import Promise from './(home)/components/Promise';
+import Offerings from './(home)/components/Offerings';
+import Community from './(home)/components/Community';
+import Newsletter from './(home)/components/Newsletter';
+import CallToAction from './(home)/components/CallToAction';
 
 export default function Home() {
   return (

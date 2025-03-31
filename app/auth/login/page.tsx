@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { Logo } from '../components/ui/Logo';
-import SigninGit from '../components/auth/SigninGit';
+import { Logo } from '@/shared/components/ui/Logo';
 import { getAuthStatus } from '@/data/users';
 import { redirect } from 'next/navigation';
+import SigninGit from '../components/SigninGit';
 
 export default async function LoginPage({
   searchParams,
@@ -12,7 +12,10 @@ export default async function LoginPage({
 }) {
   const isAuthenticated = await getAuthStatus();
 
-  const redirectUrl = (await searchParams).redirectUrl || '/';
+  const redirectUrl =
+    (await searchParams).redirectUrl === '/auth/login'
+      ? '/'
+      : (await searchParams).redirectUrl || '/';
 
   if (isAuthenticated) {
     redirect(redirectUrl);

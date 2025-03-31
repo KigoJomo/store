@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, Award, Leaf } from 'lucide-react';
-import Button from '../components/ui/Button';
+import Button from '@/shared/components/ui/Button';
 
 export default function AboutPage() {
   return (

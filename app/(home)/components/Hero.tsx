@@ -1,10 +1,10 @@
 'use client';
 import { useRef } from 'react';
-import Background from '../ui/Background';
-import Button from '../ui/Button';
 import { ExternalLink, FlaskConical } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Background from '@/shared/components/ui/Background';
+import Button from '@/shared/components/ui/Button';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);

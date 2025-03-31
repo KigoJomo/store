@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { logOut } from '@/app/actions/auth';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 import { LoaderIcon, LogOutIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 

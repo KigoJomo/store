@@ -1,9 +1,9 @@
 import React from 'react';
 import { MessageSquare, Heart, Sparkles, Users2 } from 'lucide-react';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 import Image from 'next/image';
-import Background2 from '../ui/Background2';
-import { Logo } from '../ui/Logo';
+import Background2 from '@/shared/components/ui/Background2';
+import { Logo } from '@/shared/components/ui/Logo';
 
 type CommunityFeatureProps = {
   icon: React.ReactNode;

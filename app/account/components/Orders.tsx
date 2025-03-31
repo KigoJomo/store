@@ -1,6 +1,6 @@
 import { Package } from 'lucide-react';
 import { FC } from 'react';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 
 const Orders: FC = () => {
   return (
@@ -23,4 +23,4 @@ const Orders: FC = () => {
   );
 };
 
-export default Orders
+export default Orders;

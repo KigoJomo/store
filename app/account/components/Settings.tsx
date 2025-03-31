@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
 import { FC, useState } from 'react';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 
 const Settings: FC = () => {
   const [emailNotifications, setEmailNotifications] = useState(true);

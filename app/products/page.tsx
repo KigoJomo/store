@@ -1,8 +1,12 @@
 import React from 'react';
 import { Tags, Filter } from 'lucide-react';
-import Button from '../components/ui/Button';
+import Button from '@shared/components/ui/Button';
+import ProductCard from './components/ProductCard';
+import { getProducts } from '@/data/products';
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
+
   return (
     <>
       <section className="">
@@ -23,26 +27,22 @@ export default function ProductsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Placeholder product cards */}
-          {Array(8)
-            .fill(0)
-            .map((_, index) => (
-              <div
-                key={index}
-                className="bg-background-light rounded-lg shadow-md overflow-hidden">
-                <div className="h-48 bg-gradient-background animate-pulse"></div>
-                <div className="p-4">
-                  <div className="h-4 bg-foreground-light opacity-30 rounded animate-pulse mb-2"></div>
-                  <div className="h-6 bg-foreground-light opacity-30 rounded animate-pulse mb-4 w-2/3"></div>
-                  <div className="flex justify-between items-center">
-                    <div className="h-5 bg-foreground-light opacity-30 rounded animate-pulse w-1/3"></div>
-                    <Button variant="primary" size="sm">
-                      View
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {products.length > 0
+            ? products.map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))
+            : // Show loading state if no products
+              Array(8)
+                .fill(0)
+                .map((_, index) => (
+                  <ProductCard
+                    key={index}
+                    id={`placeholder-${index}`}
+                    name="Product Name"
+                    price={99.99}
+                    loading={true}
+                  />
+                ))}
         </div>
       </section>
     </>

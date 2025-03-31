@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../ui/Button';
 import { ShoppingBag, ExternalLink, Star } from 'lucide-react';
+import Button from '@/shared/components/ui/Button';
 
 export default function CallToAction() {
   return (

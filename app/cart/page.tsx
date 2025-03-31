@@ -1,13 +1,13 @@
 import { getAuthStatus, getUserProfile } from '@/data/users';
 import { redirect } from 'next/navigation';
 import React from 'react';
-import Input from '../components/ui/Input';
+import Input from '@/shared/components/ui/Input';
 
 export default async function CartPage() {
   const isAuthenticated = await getAuthStatus();
 
   if (!isAuthenticated) {
-    redirect(`/login?redirectUrl=${encodeURIComponent('/cart')}`);
+    redirect(`/auth/login?redirectUrl=${encodeURIComponent('/cart')}`);
   }
 
   const user = await getUserProfile();

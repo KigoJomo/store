@@ -1,6 +1,6 @@
 import { Heart } from 'lucide-react';
 import { FC } from 'react';
-import Button from '../ui/Button';
+import Button from '@/shared/components/ui/Button';
 
 const WishList: FC = () => {
   return (
@@ -21,4 +21,4 @@ const WishList: FC = () => {
   );
 };
 
-export default WishList
+export default WishList;

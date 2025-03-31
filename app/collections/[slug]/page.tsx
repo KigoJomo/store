@@ -6,13 +6,14 @@ import ProductCard from '@/app/products/components/ProductCard';
 import { getProductDTO } from '@/data/products';
 
 interface CollectionPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>
 }
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
-  const collection = await getCollection(params.slug);
+  const slug = (await params).slug;
+  const collection = await getCollection(slug);
 
   if (!collection) {
     notFound();

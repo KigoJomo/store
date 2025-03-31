@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Funnel_Display } from 'next/font/google';
 import './globals.css';
-import Header from './components/ui/Header';
 import { SessionProvider } from 'next-auth/react';
+import Header from './components/navigation/Header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

@@ -5,6 +5,8 @@
   --background-light: #202020;
   --foreground: #ededed;
   --foreground-light: #a1a1a1;
+  --accent: #1267dd;
+  --test: #68a7ff;
 }
 
 @theme inline {
@@ -12,6 +14,7 @@
   --color-background-light: var(--background-light);
   --color-foreground: var(--foreground);
   --color-foreground-light: var(--foreground-light);
+  --color-accent: var(--accent);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -55,6 +58,11 @@ input[type='checkbox']:not(:checked) {
   background-color: transparent;
 }
 
+img{
+  object-fit: cover;
+  object-position: center;
+}
+
 html {
   width: 100vw;
   height: 100dvh;
@@ -72,12 +80,24 @@ html {
 
     section {
       width: 100%;
-      padding: 1rem 2rem;
+      /* padding: 1rem 2rem; */
     }
 
-    @media (max-width: 768px) {
+    @media (width < 40rem) {
       section {
-        padding: 1rem 1rem;
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    @media (width >= 48rem /* md */) {
+      section {
+        padding: 5rem 2rem;
+      }
+    }
+
+    @media (width >= 64rem /* lg */) {
+      section {
+        padding: 5rem 5rem;
       }
     }
   }

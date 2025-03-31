@@ -1,66 +1,72 @@
+import { VerifiedIcon } from 'lucide-react';
+import Image from 'next/image';
 import React from 'react';
-
-type OfferingProps = {
-  title: string;
-  items: string[];
-  index: number;
-};
-
-function Offering({ title, items, index }: OfferingProps) {
-  return (
-    <div
-      className={`animate-fade-in-right animation-delay-${
-        index * 100
-      } flex flex-col gap-2`}>
-      <h4>{title}</h4>
-      <ul className="list-disc list-inside">
-        {items.map((item, i) => (
-          <li key={i} className="text-foreground-light ml-2">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 export default function Offerings() {
   const offerings = [
     {
       title: 'Premium Apparel',
-      items: ['T-shirts', 'Hoodies', 'and more'],
+      items: [
+        'Cozy pullover hoodies',
+        'Soft cotton graphic tees',
+        'Stylish seasonal outerwear',
+      ],
+      image: '/images/offerings/beige_hoodie.webp',
+      alt: 'Cozy beige premium hoodie',
     },
     {
       title: 'Tech Accessories',
-      items: ['Bags', 'Caps', 'Gadgets'],
+      items: [
+        'Durable laptop travel bags',
+        'Embroidered designer caps',
+        'Custom branded tech gadgets',
+      ],
+      image: '/images/offerings/laptop_bag.webp',
+      alt: 'Stylish laptop travel bag',
     },
     {
       title: 'Limited Editions',
-      items: ['Special runs made with you in mind'],
+      items: [
+        'Community-inspired specials',
+        'Exclusive seasonal releases',
+        'Numbered collector items',
+      ],
+      image: '/images/offerings/limited_edition.webp',
+      alt: 'Exclusive limited edition item',
     },
   ];
 
   return (
-    <section className="py-20">
-      <h2 className="animate-fade-in-down text-center mb-12">What We Offer</h2>
+    <section className="">
+      <div className="w-full md:aspect-[2.5/1] md:rounded-3xl md:border-2 border-foreground-light/20  md:bg-gradient-to-bl from-accent/30 to-background-light/30 p-0 md:p-4 lg:p-8 md:backdrop-blur-2xl      grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+        {offerings.map((offering, index) => (
+          <div
+            key={index}
+            className="w-full aspect-[3/4] flex flex-col justify-between gap-12 px-4 py-6 bg-background/70 rounded-3xl relative border-4 border-background-light hover:border-accent/40 transition-all duration-600">
+            <h4 className="text-center">{offering.title}</h4>
 
-      <div className="flex flex-col md:flex-row gap-16 items-start">
-        <div className="flex-1 flex flex-col gap-8">
-          {offerings.map((offering, i) => (
-            <Offering
-              key={i}
-              index={i}
-              title={offering.title}
-              items={offering.items}
-            />
-          ))}
-        </div>
+            <div className="image w-full aspect-[1] absolute -z-0 bottom-4 left-0 right-0 px-4">
+              <Image
+                src={offering.image}
+                alt={offering.alt}
+                width={1000}
+                height={1000}
+                className="w-full h-full rounded-2xl"
+              />
 
-        <div className="flex-1 animate-scale-in animation-delay-400 bg-background-light/30 rounded-xl overflow-hidden aspect-square relative">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-foreground-light">[Product Collage]</p>
+              <div className="inset-4 absolute bottom-0 rounded-xl bg-gradient-to-b from-transparent to-background"></div>
+            </div>
+
+            <ul className="px-4 md:px-2 lg:px-4 flex flex-col gap-2 z-[1]">
+              {offering.items.map((item, i) => (
+                <li key={i} className="flex items-center gap-2 md:text-xs lg:text-base">
+                  <VerifiedIcon size={16} className="stroke-accent shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );

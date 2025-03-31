@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { Menu, X, Search, ShoppingCart, Loader } from 'lucide-react';
-import Button from './Button';
-import { Logo } from './Logo';
-import Tooltip from './Tooltip';
+import Button from '../ui/Button';
+import { Logo } from '../ui/Logo';
+import Tooltip from '../ui/Tooltip';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import SideMenu from './SideMenu';
+import SideMenu from '../ui/SideMenu';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [

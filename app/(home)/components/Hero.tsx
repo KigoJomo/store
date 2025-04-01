@@ -22,7 +22,7 @@ export default function Hero() {
       <Background />
 
       <h2 className="animate-fade-in-down text-center">
-        Tech-Inspired Products with Durability
+        Tech-Inspired Products with Integrity
       </h2>
 
       <div className="flex items-center gap-2">

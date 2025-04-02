@@ -8,7 +8,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
         pathname: '/**/*'
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: '*static.wixstatic.com',
+        pathname: '/**/*',
+      },
     ]
   }
 };

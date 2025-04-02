@@ -1,17 +1,11 @@
-import { ObjectId } from 'mongodb';
+import { collections } from '@wix/stores';
 
-export interface Collection {
-  _id: ObjectId;
-  title: string;
-  description: string;
-  image?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+export type WixCollection = collections.Collection;
 
 export interface CollectionDTO {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
+  id: string | null | undefined;
+  title: string | null | undefined;
+  description: string | null | undefined;
+  image?: string | null | undefined;
+  slug?: string | null | undefined;
 }

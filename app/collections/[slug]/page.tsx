@@ -1,53 +1,38 @@
-import React from 'react';
-import { getCollection, getCollectionProducts } from '@/data/collections';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import ProductCard from '@/app/products/components/ProductCard';
-import { getProductDTO } from '@/data/products';
+import ProductGrid from '@/app/products/components/ProductGrid';
+import { getCollectionBySlug } from '@/data/wix/collections';
+import { getProductsByCollection } from '@/data/wix/products';
+import Link from 'next/link';
 
-interface CollectionPageProps {
-  params: Promise<{
-    slug: string;
-  }>
-}
-
-export default async function CollectionPage({ params }: CollectionPageProps) {
+export default async function CollectionPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const slug = (await params).slug;
-  const collection = await getCollection(slug);
+
+  const collection = await getCollectionBySlug(slug);
 
   if (!collection) {
-    notFound();
+    return (
+      <section className="flex flex-col items-center justify-center gap-6">
+        <h1>Collection not found</h1>
+        <p>The collection you requested does not exist!</p>
+        <Link href={'/collections'} className="text-accent">
+          Go back to collections page
+        </Link>
+      </section>
+    );
   }
 
-  const products = await getCollectionProducts(collection.id);
-  const productDTOs = await Promise.all(products.map(getProductDTO));
+  const collectionProducts = await getProductsByCollection(collection.id!)
 
-  return (
-    <section className="flex flex-col gap-8">
-      <div className="relative h-64 w-full rounded-lg overflow-hidden">
-        {collection.image ? (
-          <Image
-            src={collection.image}
-            alt={collection.title}
-            fill
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-background" />
-        )}
-        <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-background/90 to-transparent">
-          <h1 className="text-4xl font-bold mb-2">{collection.title}</h1>
-          <p className="text-foreground-light max-w-2xl">
-            {collection.description}
-          </p>
-        </div>
-      </div>
+  return(
+    <section className='flex flex-col gap-6'>
+      <h3>{collection.title}</h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {productDTOs.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
+      <hr className='border-background-light/50' />
+
+      <ProductGrid products={collectionProducts} />
     </section>
-  );
+  )
 }

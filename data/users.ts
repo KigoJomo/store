@@ -17,7 +17,7 @@ export async function getAuthStatus() {
   return isAuthenticated;
 }
 
-export async function getProfileDTO(user: User, isAuthenticated: boolean) {
+function getProfileDTO(user: User, isAuthenticated: boolean) {
   const userProfile = {
     name: user.name,
     image: user.image,
